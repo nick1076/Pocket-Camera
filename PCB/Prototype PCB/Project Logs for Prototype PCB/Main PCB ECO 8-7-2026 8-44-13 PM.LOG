@@ -1,0 +1,6 @@
+Add Component: Footprint Not Found SW_SWT0325-073016TSK_REVA
+Added Pin To Net: NetName=RTC_SDA Pin=P5-3
+Added Pin To Net: NetName=RTC_SCL Pin=P5-4
+Add Pin To Net: Unknown Pin: Pin S1-1
+Add Pin To Net: Unknown Pin: Pin S1-4
+Add Class Member: Failed to add class member : Component S1 SWT0325-073016TSK_REVA

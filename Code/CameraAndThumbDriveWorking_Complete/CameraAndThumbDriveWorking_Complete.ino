@@ -69,7 +69,7 @@
 
 // ---------- shutter button ----------
 // GPIO0 = onboard BOOT button (zero wiring). External: 14 or 21, wired to GND.
-#define BUTTON_PIN   0
+#define BUTTON_PIN   14
 #define WS2812_PIN   48
 #define LONGPRESS_MS 1500
 

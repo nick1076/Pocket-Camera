@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=SHUTTER Pin=S1-1
+Added Pin To Net: NetName=GND Pin=S1-4
+Added Member To Class: ClassName=Main Member=Component S1 SWT0325-073016TSK_REVA

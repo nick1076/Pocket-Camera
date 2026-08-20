@@ -1,0 +1,99 @@
+Removed Pin From Net: NetName=3V3 Pin=J?-1
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=RST Pin=J?-2
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_SIOD Pin=J?-3
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_SIOC Pin=J?-4
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_VYSNC Pin=J?-5
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_HREF Pin=J?-6
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_XCLK Pin=J?-7
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_Y9 Pin=J?-8
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_Y8 Pin=J?-9
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_Y7 Pin=J?-10
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_Y4 Pin=J?-11
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=DISP_CS Pin=J?-12
+Remove Pin from Net: Failed to remove Pin
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=LOG Pin=J?-13
+Removed Pin From Net: NetName=CAM_Y3 Pin=J?-14
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_Y5 Pin=J?-15
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_Y2 Pin=J?-16
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_Y6 Pin=J?-17
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=CAM_PCLK Pin=J?-18
+Remove Pin from Net: Failed to remove Pin
+Remove Pin from Net: Failed to remove Pin
+Removed Pin From Net: NetName=SHUTTER Pin=J?-19
+Removed Pin From Net: NetName=5V0 Pin=J?-20
+Remove Pin from Net: Failed to remove Pin
+Removed Member From Class: ClassName=Main Member=J?
+Added Component: Designator=J1(61302011821)
+Add component (AddParameter): Name = "Contact Resistance"; Value = "20mO"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Current Rating"; Value = "3A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Gender"; Value = "Female"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Pitch"; Value = "2.54mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Pins"; Value = "20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Supply Voltage"; Value = "250V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Orientation"; Value = "Vertical"; VariantName = "[No Variations]"
+Added Component: Designator=J2(61302011821)
+Add component (AddParameter): Name = "Contact Resistance"; Value = "20mO"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Current Rating"; Value = "3A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Gender"; Value = "Female"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Pitch"; Value = "2.54mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Pins"; Value = "20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Supply Voltage"; Value = "250V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Orientation"; Value = "Vertical"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3V3 Pin=J1-1
+Added Pin To Net: NetName=RST Pin=J1-2
+Added Pin To Net: NetName=CAM_SIOD Pin=J1-3
+Added Pin To Net: NetName=CAM_SIOC Pin=J1-4
+Added Pin To Net: NetName=CAM_VYSNC Pin=J1-5
+Added Pin To Net: NetName=CAM_HREF Pin=J1-6
+Added Pin To Net: NetName=CAM_XCLK Pin=J1-7
+Added Pin To Net: NetName=CAM_Y9 Pin=J1-8
+Added Pin To Net: NetName=CAM_Y8 Pin=J1-9
+Added Pin To Net: NetName=CAM_Y7 Pin=J1-10
+Added Pin To Net: NetName=CAM_Y4 Pin=J1-11
+Added Pin To Net: NetName=DISP_CS Pin=J1-12
+Added Pin To Net: NetName=LOG Pin=J1-13
+Added Pin To Net: NetName=CAM_Y3 Pin=J1-14
+Added Pin To Net: NetName=CAM_Y5 Pin=J1-15
+Added Pin To Net: NetName=CAM_Y2 Pin=J1-16
+Added Pin To Net: NetName=CAM_Y6 Pin=J1-17
+Added Pin To Net: NetName=CAM_PCLK Pin=J1-18
+Added Pin To Net: NetName=SHUTTER Pin=J1-19
+Added Pin To Net: NetName=5V0 Pin=J1-20
+Added Pin To Net: NetName=TX Pin=J2-1
+Added Pin To Net: NetName=RX Pin=J2-2
+Added Pin To Net: NetName=DISP_DC Pin=J2-3
+Added Pin To Net: NetName=DISP_BKL Pin=J2-4
+Added Pin To Net: NetName=RTC_SCL Pin=J2-5
+Added Pin To Net: NetName=RTC_SDA Pin=J2-6
+Added Pin To Net: NetName=SD_DATA Pin=J2-7
+Added Pin To Net: NetName=SD_CLK Pin=J2-8
+Added Pin To Net: NetName=SD_CMD Pin=J2-9
+Added Pin To Net: NetName=PSRAM_37 Pin=J2-10
+Added Pin To Net: NetName=PSRAM_36 Pin=J2-11
+Added Pin To Net: NetName=PSRAM_35 Pin=J2-12
+Added Pin To Net: NetName=BOOT Pin=J2-13
+Added Pin To Net: NetName=VSPI Pin=J2-14
+Added Pin To Net: NetName=WS2812 Pin=J2-15
+Added Pin To Net: NetName=DISP_MOSI Pin=J2-16
+Added Pin To Net: NetName=DISP_SCLK Pin=J2-17
+Added Pin To Net: NetName=D- Pin=J2-18
+Added Pin To Net: NetName=D+ Pin=J2-19
+Added Pin To Net: NetName=GND Pin=J2-20
+Added Member To Class: ClassName=Main Member=Component J1 61302011821
+Added Member To Class: ClassName=Main Member=Component J2 61302011821

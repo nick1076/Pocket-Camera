@@ -1,0 +1,8 @@
+Added Pin To Net: NetName=3V3 Pin=P3-1
+Added Pin To Net: NetName=DISP_MOSI Pin=P3-2
+Added Pin To Net: NetName=DISP_SCLK Pin=P3-3
+Added Pin To Net: NetName=DISP_CS Pin=P3-4
+Added Pin To Net: NetName=DISP_DC Pin=P3-5
+Added Pin To Net: NetName=DISP_BKL Pin=P3-7
+Change Net Name : Old Net Name=3V3 New Net Name=RES
+Added Rule: Name=Schematic Supply Nets_3
