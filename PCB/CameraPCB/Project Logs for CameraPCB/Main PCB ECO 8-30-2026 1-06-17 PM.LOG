@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=SCL Pin=U2-9
+Removed Pin From Net: NetName=SDA Pin=U2-10
+Add Component: Footprint Not Found S-1317A33-M5T1U4
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Added Pin To Net: NetName=CLK Pin=U2-9
+Added Pin To Net: NetName=MOSI Pin=U2-10
+Add Pin To Net: Unknown Pin: Pin U3-1
+Add Pin To Net: Unknown Pin: Pin U3-2
+Add Pin To Net: Unknown Pin: Pin U3-5
+Add Class Member: Failed to add class member : Component B1 LiPo
+Add Class Member: Failed to add class member : Component U3 S-1317A33-M5T1U4

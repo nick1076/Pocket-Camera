@@ -1,0 +1,30 @@
+Removed Pin From Net: NetName=3V3 Pin=R10-2
+Removed Pin From Net: NetName=3V3 Pin=R11-2
+Change Component Footprint: Designator=C6 Old Footprint=CAPC3216X110X50LL20T25 New Footprint=WCAP-CSGP_0603_L1.6W0.8H0.8_Reflow
+Change Component Footprint: Designator=R10 Old Footprint=RESC3116X65X40LL10T20 New Footprint=RESC1608X55X25NL10T15
+Change Component Footprint: Designator=R11 Old Footprint=RESC3116X65X40LL10T20 New Footprint=RESC1608X55X25NL10T15
+Change Component Comment : Designator=C6 Old Comment=1µF New Comment=1uF
+Change Component Comment : Designator=R10 Old Comment=10kO New Comment=10k
+Change Component Comment : Designator=R11 Old Comment=10kO New Comment=10k
+Change Managed Component Library Link : Designator=C6 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=E8BB9374-CAD9-4083-B39E-D35CF9CECC3E New ItemGUID=15C13E94-D364-4E7D-B336-28C19B066C05 Old RevisionGUID=21161082-042B-4F80-836A-E02CD4D168BC New RevisionGUID=8885A7E5-0489-4F8A-B2EA-6B84A3FAB31C
+Change Managed Component Library Link : Designator=R10 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=A0CD2AE5-682A-4040-B4E0-41C83870979B New ItemGUID=6547DE7F-F22F-4727-826C-8B02894606B2 Old RevisionGUID=3363B304-D870-4C39-A4F8-DCA955933520 New RevisionGUID=F480799E-55CD-4A97-8093-90DAB622B458
+Change Managed Component Library Link : Designator=R11 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=A0CD2AE5-682A-4040-B4E0-41C83870979B New ItemGUID=6547DE7F-F22F-4727-826C-8B02894606B2 Old RevisionGUID=3363B304-D870-4C39-A4F8-DCA955933520 New RevisionGUID=F480799E-55CD-4A97-8093-90DAB622B458
+Change component parameters: Designator = "C6" ("C6"); Footprint = "CAPC3216X110X50LL20T25"; UniqueID = "\VGUXWWPD" ("\VGUXWWPD")
+Change component parameters: Designator = "R10" ("R10"); Footprint = "RESC3116X65X40LL10T20"; UniqueID = "\NUESZZWF" ("\NUESZZWF")
+Change component parameters: Designator = "R11" ("R11"); Footprint = "RESC3116X65X40LL10T20"; UniqueID = "\VWREDAKZ" ("\VWREDAKZ")
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Added Pin To Net: NetName=3V3 Pin=R10-1
+Added Pin To Net: NetName=3V3 Pin=R11-1
+Added Pin To Net: NetName=NetR10_2 Pin=R10-2
+Added Pin To Net: NetName=NetR10_2 Pin=U4-1
+Added Net: Name=NetR10_2
+Added Pin To Net: NetName=NetR11_2 Pin=R11-2
+Added Pin To Net: NetName=NetR11_2 Pin=U4-3
+Added Net: Name=NetR11_2
+Add Class Member: Failed to add class member : Component B1 LiPo
+Added Rule: Name=Schematic Supply Nets
+Added Rule: Name=Schematic Supply Nets_1
+Added Rule: Name=Schematic Supply Nets_2
+Added Rule: Name=Schematic Supply Nets_3
+Added Rule: Name=Schematic Supply Nets_4

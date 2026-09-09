@@ -115,7 +115,7 @@
 
 #define TFT_W    240
 #define TFT_H    240
-#define TFT_ROTATION 1 
+#define TFT_ROTATION 0 
 #define TFT_SPI_HZ 40000000      // lower this first if the panel misbehaves
 
 #define PREVIEW_BIG_ENDIAN false // flip if gallery/preview colours are wrong

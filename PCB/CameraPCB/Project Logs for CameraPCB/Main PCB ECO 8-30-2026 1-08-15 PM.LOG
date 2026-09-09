@@ -1,0 +1,7 @@
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Added Pin To Net: NetName=BUCK_IN Pin=U3-1
+Added Pin To Net: NetName=GND Pin=U3-2
+Added Pin To Net: NetName=3V3 Pin=U3-5
+Add Class Member: Failed to add class member : Component B1 LiPo
+Added Member To Class: ClassName=Main Member=Component U3 S-1317A33-M5T1U4

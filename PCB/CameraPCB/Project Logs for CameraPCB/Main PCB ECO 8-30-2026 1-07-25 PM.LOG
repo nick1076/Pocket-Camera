@@ -1,0 +1,11 @@
+Change Footprint: Footprint Not Found S-1317A33-M5T1U4
+Change Component Comment : Designator=U3 Old Comment=TLV1117LV33DCYR New Comment=S-1317A33-M5T1U4
+Change Managed Component Library Link : Designator=U3 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=8A2CB2F0-C13A-479F-AADE-2F25AEE895E8 New ItemGUID= Old RevisionGUID=0FD1A707-ED41-4CF8-A760-4A2AFE2EA485 New RevisionGUID=
+Change component parameters: Designator = "U3" ("U3"); Footprint = "DCY0004A_N"; UniqueID = "\NMPHHNXJ" ("\NMPHHNXJ")
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Added Pin To Net: NetName=BUCK_IN Pin=U3-1
+Added Pin To Net: NetName=GND Pin=U3-2
+Add Pin To Net: Unknown Pin: Pin U3-5
+Add Class Member: Failed to add class member : Component B1 LiPo
+Added Member To Class: ClassName=Main Member=Component U3 S-1317A33-M5T1U4
