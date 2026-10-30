@@ -1,0 +1,14 @@
+Change Component Footprint: Designator=R13 Old Footprint=RESC1608X55X25NL10T15 New Footprint=RESC3116X65X40NL10T20
+Change Component Footprint: Designator=R14 Old Footprint=RESC1608X55X25NL10T15 New Footprint=RESC3116X65X40NL10T20
+Change Managed Component Library Link : Designator=R13 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=6547DE7F-F22F-4727-826C-8B02894606B2 New ItemGUID=022E4BE2-4D3F-4CCB-A165-72C4E2435AD6 Old RevisionGUID=F480799E-55CD-4A97-8093-90DAB622B458 New RevisionGUID=704D33ED-803B-438D-B1D5-21B384703DD8
+Change Managed Component Library Link : Designator=R14 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=6547DE7F-F22F-4727-826C-8B02894606B2 New ItemGUID=022E4BE2-4D3F-4CCB-A165-72C4E2435AD6 Old RevisionGUID=F480799E-55CD-4A97-8093-90DAB622B458 New RevisionGUID=704D33ED-803B-438D-B1D5-21B384703DD8
+Change component parameters: Designator = "R13" ("R13"); Footprint = "RESC1608X55X25NL10T15"; UniqueID = "\RYURWDIW" ("\RYURWDIW")
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Yageo"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Part Number"; Value = "RC1206JR-0720RL"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R14" ("R14"); Footprint = "RESC1608X55X25NL10T15"; UniqueID = "\RHFPSDIE" ("\RHFPSDIE")
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Yageo"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Part Number"; Value = "RC1206JR-0720RL"; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Add Class Member: Failed to add class member : Component B1 LiPo
+Added Member To Class: ClassName=Main Member=Component C11 1000uF

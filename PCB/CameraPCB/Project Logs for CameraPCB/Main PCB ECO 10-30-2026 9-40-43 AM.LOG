@@ -1,0 +1,23 @@
+Change Footprint: Footprint Not Found LED_MP-2016-1100-50-70
+Change Component Comment : Designator=R14 Old Comment=4.7 New Comment=6.2
+Change Component Comment : Designator=D5 Old Comment=LTST-C190KGKT New Comment=MP-2016-1100-50-70
+Change Managed Component Library Link : Designator=D5 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=EE709129-2F0E-46DE-BF5F-97C32F3AEA8F New ItemGUID= Old RevisionGUID=F50A7F9A-B0EC-46E6-BFB4-BED0F881ED38 New RevisionGUID=
+Change component parameters: Designator = "D5" ("D5"); Footprint = "FP-LTST-C190KGKT-MFG"; UniqueID = "\HFPBNFMH" ("\HFPBNFMH")
+Change component parameters (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/MP-2016-1100-50-70/Luminus+Devices+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Luminus Devices"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "MP-2016-1100-50-70"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/MP-2016-1100-50-70/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/MP-2016-1100-50-70/Luminus+Devices+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Added Pin To Net: NetName=NetD5_A Pin=R14-2
+Added Net: Name=NetD5_A
+Added Pin To Net: NetName=NetD5_C Pin=Q4-3
+Added Net: Name=NetD5_C
+Add Class Member: Failed to add class member : Component B1 LiPo
+Added Member To Class: ClassName=Main Member=Component SW2 450404015514
+Added Member To Class: ClassName=Main Member=Component U4 MCP23008T-E/SO
