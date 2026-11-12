@@ -1,5 +1,5 @@
 /*
-   ButtonCam v3.1 — ESP32-S3-CAM (FORIOT board, OV3660 sensor)
+   Pocket Camera v3.1 — ESP32-S3-CAM (FORIOT board, OV3660 sensor)
                     DS3231 RTC + 1.54" ST7789 240x240 viewfinder + GALLERY MODE
 
    ------------------------------------------------------------------
@@ -59,9 +59,11 @@
 
 #include <Wire.h>
 #include <RTClib.h>
+#include <Preferences.h>
 #include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7789.h>
+#include <dirent.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -125,6 +127,11 @@
 #define RTC_SCL 42
 #define I2C_HZ  100000
 
+// Seconds added to the build timestamp when the RTC is synced after an
+// upload — rough compile+flash+reset latency. Tune against a clock, or use
+// the serial T<epoch> command when you want it exact.
+#define COMPILE_SET_FUDGE_S 25
+
 // ---------- geometry ----------
 #define CAM_W 320                // QVGA preview source
 #define CAM_H 240
@@ -171,6 +178,9 @@ static AppMode mode = MODE_CAMERA;
 static int galleryIndex = -1;
 
 enum Gesture { GESTURE_NONE, GESTURE_SINGLE, GESTURE_DOUBLE, GESTURE_LONG };
+
+// Defined in the gallery section; used earlier by the preview and capture paths.
+static bool jpegDimensions(const uint8_t *d, size_t len, int *w, int *h);
 
 #define LOG(...) do { Serial.printf(__VA_ARGS__); USBSerial.printf(__VA_ARGS__); } while (0)
 
@@ -240,20 +250,31 @@ static bool initDisplay() {
 }
 
 static void splash(const char *line1, const char *line2) {
-  tft.fillScreen(ST77XX_BLACK);
-  tft.setTextColor(ST77XX_WHITE);
-  tft.setTextSize(2);
-  tft.setCursor(10, 100);
-  tft.println(line1);
-  if (line2) { tft.setCursor(10, 128); tft.println(line2); }
+
+  tft.fillScreen(0x0);
+  tft.setTextColor(0xFFFF);
+  tft.setTextSize(3);
+  tft.setTextWrap(false);
+  tft.setCursor(50, 132);
+  tft.print(line2);
+  if (line2) {
+    tft.setTextSize(4);
+    tft.setCursor(26, 88);
+    tft.print(line1);
+  }
+
+  
 }
 
+// Progress/result text lives in the status-bar band now, so the image area —
+// including the just-captured frame — stays fully visible. drawStatusBar(true)
+// or drawGalleryBar() repaints the band afterwards.
 static void banner(const char *text, uint16_t colour) {
-  tft.fillRect(0, IMG_H / 2 - 16, TFT_W, 32, ST77XX_BLACK);
+  tft.fillRect(0, BAR_Y, TFT_W, TFT_H - BAR_Y, ST77XX_BLACK);
   tft.setTextSize(3);
   tft.setTextColor(colour);
   int16_t w = strlen(text) * 18;
-  tft.setCursor((TFT_W - w) / 2, IMG_H / 2 - 12);
+  tft.setCursor((TFT_W - w) / 2, BAR_Y + 20);
   tft.print(text);
 }
 
@@ -298,9 +319,16 @@ static void drawStatusBar(bool force) {
 
   tft.setTextSize(3);
   tft.setTextColor(rtcOk ? ST77XX_WHITE : ST77XX_YELLOW);
+
+  //Shows RTC current time (12-hour)
   tft.setCursor(6, BAR_Y + 18);
-  if (rtcOk) tft.printf("%02d:%02d", hour, minute);
-  else       tft.print("--:--");
+  if (rtcOk) {
+    int h12 = hour % 12; if (h12 == 0) h12 = 12;
+    tft.printf("%d:%02d %s", h12, minute, hour < 12 ? "AM" : "PM");
+  } else {
+    tft.print("--:--");
+  }
+  
 
   tft.setTextSize(2);
   tft.setTextColor(ST77XX_CYAN);
@@ -312,7 +340,12 @@ static void previewFrame() {
   camera_fb_t *fb = esp_camera_fb_get();
   if (!fb) return;
 
-  bool ok = jpg2rgb565(fb->buf, fb->len, (uint8_t *)rgbBuf, JPG_SCALE_NONE);
+  // Only decode frames that really are QVGA: a stale full-res frame straight
+  // after a capture would otherwise blow past rgbBuf. Header parse is ~us.
+  int jw = 0, jh = 0;
+  bool ok = jpegDimensions(fb->buf, fb->len, &jw, &jh)
+            && jw == CAM_W && jh == CAM_H
+            && jpg2rgb565(fb->buf, fb->len, (uint8_t *)rgbBuf, JPG_SCALE_NONE);
   esp_camera_fb_return(fb);
   if (!ok) return;
 
@@ -329,10 +362,25 @@ static bool initRTC() {
         RTC_SDA, RTC_SCL);
     return false;
   }
-  if (rtc.lostPower()) {
-    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-    LOG("RTC had lost power; seeded from compile time. Set it with T<epoch>.\n");
+  // Sync-on-upload: each build carries its compile timestamp. The first boot
+  // after flashing sees a stamp NVS has never recorded, sets the RTC from it,
+  // and records the stamp — so later reboots of the same build leave the RTC
+  // alone instead of re-applying a stale compile time. An erase-flash upload
+  // wipes NVS, which also reads as a fresh upload: still correct.
+  DateTime built(F(__DATE__), F(__TIME__));
+  uint32_t buildStamp = built.unixtime();
+  Preferences prefs;
+  prefs.begin("pocketcam", false);
+  bool freshUpload = (prefs.getULong("build", 0) != buildStamp);
+  bool lostPower   = rtc.lostPower();          // read before adjust() clears it
+
+  if (freshUpload || lostPower) {
+    rtc.adjust(DateTime(buildStamp + COMPILE_SET_FUDGE_S));
+    prefs.putULong("build", buildStamp);
+    LOG("RTC set from build time (%s). Fine-tune with T<epoch> if needed.\n",
+        freshUpload ? "new upload detected" : "RTC lost power");
   }
+  prefs.end();
   DateTime now = rtc.now();
   struct timeval tv = { .tv_sec = (time_t)now.unixtime(), .tv_usec = 0 };
   settimeofday(&tv, nullptr);
@@ -421,6 +469,9 @@ static bool initCamera() {
 static bool initSD() {
   sdmmc_host_t host = SDMMC_HOST_DEFAULT();
   host.flags = SDMMC_HOST_FLAG_1BIT;
+  host.max_freq_khz = SDMMC_FREQ_HIGHSPEED;   // 40 MHz — if mounts or writes
+                                              // get flaky, delete this line to
+                                              // fall back to the 20 MHz default
 
   sdmmc_slot_config_t slot = SDMMC_SLOT_CONFIG_DEFAULT();
   slot.clk   = (gpio_num_t)SD_CLK_PIN;
@@ -456,28 +507,46 @@ static bool photoExists(int i) {
 }
 
 static int nextFreeIndex() {
-  for (int i = 1; i <= 9999; i++) if (!photoExists(i)) return i;
-  return -1;
+  int maxSeen = 0;
+  DIR *dir = opendir(MOUNT_POINT);
+  if (dir) {
+    struct dirent *e;
+    while ((e = readdir(dir)) != nullptr) {
+      if (strncmp(e->d_name, "photo_", 6) == 0) {
+        int idx = atoi(e->d_name + 6);        // parses "0042.jpg" -> 42
+        if (idx > maxSeen && idx <= 9999) maxSeen = idx;
+      }
+    }
+    closedir(dir);
+  }
+  return (maxSeen >= 9999) ? -1 : maxSeen + 1;
 }
 
 // ---------------- capture ----------------
 
-// Retries around the QVGA->QXGA switch. The OV3660 needs several frames to
-// re-window, and the driver hands back NULL or an undersized frame until it
-// settles. Per-attempt logging so a failure tells you where it stalled.
+// Retries around the QVGA->QXGA switch. Frames are verified by their own JPEG
+// header (not the driver's bookkeeping, which can mislabel a stale pre-switch
+// frame). The first header-verified QXGA frame is discarded as the sensor's
+// settle frame; the second is kept. The 60 ms breather is only taken after a
+// bad grab, so the good path costs two frame times instead of the old
+// three-frames-plus-fixed-delays.
 static camera_fb_t *grabFullRes() {
   const size_t MIN_QXGA_BYTES = 30000;
+  int qxgaSeen = 0;
   for (int i = 0; i < 8; i++) {
     camera_fb_t *fb = esp_camera_fb_get();
-    if (fb) {
-      LOG("  grab %d: %ux%u, %u bytes\n", i,
-          (unsigned)fb->width, (unsigned)fb->height, (unsigned)fb->len);
-      if (i >= 2 && fb->len >= MIN_QXGA_BYTES) return fb;
-      esp_camera_fb_return(fb);
-    } else {
-      LOG("  grab %d: NULL\n", i);
-    }
-    delay(60);
+    if (!fb) { LOG("  grab %d: NULL\n", i); delay(60); continue; }
+
+    int jw = 0, jh = 0;
+    bool isQxga = fb->len >= MIN_QXGA_BYTES
+                  && jpegDimensions(fb->buf, fb->len, &jw, &jh)
+                  && jw == 2048;
+    LOG("  grab %d: %dx%d, %u bytes%s\n", i, jw, jh,
+        (unsigned)fb->len, isQxga ? "" : " (not QXGA yet)");
+    if (isQxga && ++qxgaSeen >= 2) return fb;
+
+    esp_camera_fb_return(fb);
+    if (!isQxga) delay(60);              // pipeline not settled — give it a beat
   }
   return nullptr;
 }
@@ -504,7 +573,7 @@ static void writeSidecar(int index, const DateTime &ts, size_t bytes, float dieT
     "  \"jpeg_quality\": 10,\n"
     "  \"rtc_temp_c\": %.2f,\n"
     "  \"uptime_ms\": %lu,\n"
-    "  \"fw\": \"buttoncam-v3.1\"\n"
+    "  \"fw\": \"Pocket Camera-v3.1\"\n"
     "}\n",
     index, index,
     ts.year(), ts.month(), ts.day(), ts.hour(), ts.minute(), ts.second(),
@@ -515,21 +584,46 @@ static void writeSidecar(int index, const DateTime &ts, size_t bytes, float dieT
   fclose(f);
 }
 
+// Shared failure exit: restore the preview size, show the result, and hold
+// long enough for the sensor to settle back to QVGA and the message to read.
+static bool captureFail(sensor_t *s) {
+  s->set_framesize(s, PREVIEW_FRAMESIZE);
+  led(64, 0, 0);
+  banner("FAILED", ST77XX_RED);
+  delay(1000);
+  return false;
+}
+
+// Decode the just-captured JPEG at 1/8 scale and put it on screen — this is
+// the exact image headed for the card, letterboxed like the live preview.
+static void showCapturedFrame(const camera_fb_t *fb) {
+  int w = 0, h = 0;
+  if (!jpegDimensions(fb->buf, fb->len, &w, &h)) return;
+  int dw = w / 8, dh = h / 8;                       // JPG_SCALE_8X output size
+  if (dw <= 0 || dh <= 0 || (size_t)dw * dh > RGB_BUF_PX) return;
+  if (!jpg2rgb565(fb->buf, fb->len, (uint8_t *)rgbBuf, JPG_SCALE_8X)) return;
+  scaleNN(rgbBuf, dw, 0, 0, dw, dh, scaleBuf, IMG_W, IMG_H);
+  pushBlock(0, 0, IMG_W, IMG_H, scaleBuf);
+}
+
 static bool takePhoto() {
+  led(0, 16, 32);
+  banner("...", ST77XX_WHITE);           // bottom band; the preview stays up
+
   DateTime ts = rtcOk ? rtc.now() : DateTime((uint32_t)0);
   float dieTemp = rtcOk ? rtc.getTemperature() : 0.0f;
 
   sensor_t *s = esp_camera_sensor_get();
   s->set_framesize(s, CAPTURE_FRAMESIZE);
-  delay(300);
+  delay(50); //300 originally
 
   camera_fb_t *fb = grabFullRes();
   if (!fb) {
     LOG("capture failed (no usable frame after retries)\n");
-    s->set_framesize(s, PREVIEW_FRAMESIZE);
-    delay(100);
-    return false;
+    return captureFail(s);
   }
+
+  showCapturedFrame(fb);                 // what you see is what saves
 
   char path[40];
   snprintf(path, sizeof(path), MOUNT_POINT "/photo_%04d.jpg", photoIndex);
@@ -538,9 +632,7 @@ static bool takePhoto() {
   if (!f) {
     LOG("could not open %s for writing\n", path);
     esp_camera_fb_return(fb);
-    s->set_framesize(s, PREVIEW_FRAMESIZE);
-    delay(100);
-    return false;
+    return captureFail(s);
   }
 
   size_t len     = fb->len;
@@ -548,20 +640,26 @@ static bool takePhoto() {
   fclose(f);
   esp_camera_fb_return(fb);
 
-  s->set_framesize(s, PREVIEW_FRAMESIZE);
-  delay(100);
-
   if (written != len) {
     LOG("short write on %s (%u of %u bytes) — card full?\n",
         path, (unsigned)written, (unsigned)len);
-    return false;
+    return captureFail(s);
   }
+
+  // The photo is on the card — say so now. The sidecar write and framesize
+  // restore happen behind the banner, and the 400 ms hold doubles as the
+  // sensor's settle time back to QVGA before the preview resumes.
+  led(0, 48, 0);
+  banner("SAVED", ST77XX_GREEN);
 
   writeSidecar(photoIndex, ts, len, dieTemp);
   LOG("saved %s (%u bytes) @ %04d-%02d-%02d %02d:%02d:%02d\n",
       path, (unsigned)len,
       ts.year(), ts.month(), ts.day(), ts.hour(), ts.minute(), ts.second());
   photoIndex++;
+
+  s->set_framesize(s, PREVIEW_FRAMESIZE);
+  delay(400);
   return true;
 }
 
@@ -621,10 +719,15 @@ static void drawGalleryBar(int index) {
 
   char iso[24];
   tft.setTextSize(2);
+
   if (readSidecarTime(index, iso, sizeof(iso)) && strlen(iso) >= 16) {
-    // "2026-08-07T19:30:12" -> "08-07  19:30"
-    char pretty[16];
-    snprintf(pretty, sizeof(pretty), "%.5s  %.5s", iso + 5, iso + 11);
+    // "2026-08-07T19:30:12" -> "08-07  7:30 PM"
+    int hh = (iso[11] - '0') * 10 + (iso[12] - '0');
+    int mn = (iso[14] - '0') * 10 + (iso[15] - '0');
+    int h12 = hh % 12; if (h12 == 0) h12 = 12;
+    char pretty[20];
+    snprintf(pretty, sizeof(pretty), "%.5s  %d:%02d %s",
+             iso + 5, h12, mn, hh < 12 ? "AM" : "PM");
     tft.setTextColor(ST77XX_WHITE);
     tft.setCursor(6, BAR_Y + 12);
     tft.print(pretty);
@@ -633,7 +736,7 @@ static void drawGalleryBar(int index) {
     tft.setCursor(6, BAR_Y + 12);
     tft.print("no sidecar");
   }
-
+  
   tft.setTextSize(2);
   tft.setTextColor(ST77XX_CYAN);
   tft.setCursor(6, BAR_Y + 36);
@@ -699,7 +802,7 @@ static void enterGallery() {
   int newest = findPhotoAtOrBelow(photoIndex - 1);
   if (newest < 0) {
     banner("NO PHOTOS", ST77XX_YELLOW);
-    delay(900);
+    delay(100); //900 originally
     drawStatusBar(true);
     return;
   }
@@ -763,11 +866,33 @@ static void enterReaderMode() {
   readerMode = true;
   mode = MODE_CAMERA;
   backlight(true);
-  splash("USB MODE", "press RST");
+  splash("USB MODE", "Press RST");
   LOG("card-reader mode: SD card exposed over USB. Press RST for camera mode.\n");
   msc.mediaPresent(true);
   led(0, 0, 48);
   while (digitalRead(BUTTON_PIN) == LOW) delay(10);
+}
+
+void drawSplash(){
+  tft.fillScreen(0x0);
+  tft.drawRect(43, 23, 154, 76, 0xFFFF);
+  tft.drawRect(42, 22, 156, 78, 0xFFFF);
+  tft.drawRect(41, 21, 158, 80, 0xFFFF);
+  tft.setTextColor(0xFFFF);
+  tft.setTextSize(2);
+  tft.setTextWrap(false);
+  tft.setCursor(109, 135);
+  tft.print("By");
+  tft.setTextSize(4);
+  tft.setCursor(50, 64);
+  tft.print("Camera");
+  tft.setCursor(50, 30);
+  tft.print("Pocket");
+  tft.setCursor(62, 188);
+  tft.setTextColor(0xFC00);
+  tft.print("Niles");
+  tft.setCursor(26, 154);
+  tft.print("Nicholas");
 }
 
 // ---------------- arduino ----------------
@@ -780,7 +905,7 @@ void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
 
   if (!initDisplay()) fatal("display init failed");
-  splash("ButtonCam", "booting...");
+  drawSplash();
 
   if (!initCamera()) fatal("camera init failed");
   if (!initSD())     fatal("SD card init failed");
@@ -792,7 +917,7 @@ void setup() {
   if (photoIndex < 0) fatal("no free filenames — card holds 9999 photos");
 
   msc.vendorID("ESP32S3");
-  msc.productID("ButtonCam SD");
+  msc.productID("Pocket Camera SD");
   msc.productRevision("3.1");
   msc.onRead(onMscRead);
   msc.onWrite(onMscWrite);
@@ -801,8 +926,8 @@ void setup() {
   msc.begin(card->csd.capacity, card->csd.sector_size);
   USB.begin();
 
-  delay(2000);
-  LOG("\n=== ButtonCam v3.1 ===\n");
+  delay(100); //2000 originally
+  LOG("\n=== Pocket Camera v3.1 ===\n");
   LOG("PSRAM: %u bytes\n", ESP.getPsramSize());
   LOG("next file: " MOUNT_POINT "/photo_%04d.jpg\n", photoIndex);
   if (!rtcOk) LOG("WARNING: no RTC — sidecar timestamps will be marked invalid\n");
@@ -875,19 +1000,8 @@ void loop() {
     return;
   }
 
-  led(0, 16, 32);
-  banner("...", ST77XX_WHITE);
-  bool ok = takePhoto();
-
-  if (ok) {
-    led(0, 48, 0);
-    banner("SAVED", ST77XX_GREEN);
-    delay(400);
-  } else {
-    led(64, 0, 0);
-    banner("FAILED", ST77XX_RED);
-    delay(1000);
-  }
+  takePhoto();                 // draws its own progress banner, the captured
+                               // frame, and the SAVED/FAILED result
 
   drawStatusBar(true);
   led(0, 8, 0);
