@@ -1,0 +1,22 @@
+Removed Pin From Net: NetName=3V3 Pin=C8-2
+Removed Pin From Net: NetName=3V3 Pin=R12-1
+Removed Pin From Net: NetName=3V3 Pin=U5-3
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Added Pin To Net: NetName=NetC8_2 Pin=C8-2
+Added Pin To Net: NetName=NetC8_2 Pin=R12-1
+Added Pin To Net: NetName=NetC8_2 Pin=U5-3
+Added Net: Name=NetC8_2
+Add Class Member: Failed to add class member : Component B1 LiPo
+Added Member To Class: ClassName=Main Member=Component C7 10pF
+Added Member To Class: ClassName=Main Member=Component C8 100pF
+Added Member To Class: ClassName=Main Member=Component C9 100nF
+Added Member To Class: ClassName=Main Member=Component C10 1000uF
+Added Member To Class: ClassName=Main Member=Component C11 1000uF
+Added Member To Class: ClassName=Main Member=Component C12 1000uF
+Added Member To Class: ClassName=Main Member=Component D4 NRVBSS14HE
+Added Member To Class: ClassName=Main Member=Component D5 MP-2016-1100-50-70
+Added Member To Class: ClassName=Main Member=Component R10 10kO
+Added Member To Class: ClassName=Main Member=Component R11 10k
+Added Member To Class: ClassName=Main Member=Component R12 1kO
+Added Member To Class: ClassName=Main Member=Component SW3 RST

@@ -1,0 +1,109 @@
+Removed Pin From Net: NetName=3V3 Pin=C6-2
+Removed Pin From Net: NetName=3V3 Pin=R11-1
+Removed Pin From Net: NetName=GND Pin=SW3-1
+Removed Pin From Net: NetName=NetR10_2 Pin=U5-1
+Removed Pin From Net: NetName=3V3 Pin=U5-2
+Removed Pin From Net: NetName=GND Pin=U5-5
+Removed Pin From Net: NetName=GND Pin=U5-6
+Removed Pin From Net: NetName=GND Pin=U5-7
+Removed Pin From Net: NetName=GND Pin=U5-8
+Removed Pin From Net: NetName=GND Pin=U5-9
+Removed Pin From Net: NetName=GND Pin=U5-10
+Removed Pin From Net: NetName=GND Pin=U5-11
+Removed Pin From Net: NetName=GND Pin=U5-12
+Removed Pin From Net: NetName=GND Pin=U5-13
+Removed Pin From Net: NetName=VBAT Pin=U5-14
+Removed Pin From Net: NetName=SDA Pin=U5-15
+Removed Pin From Net: NetName=SCL Pin=U5-16
+Removed Member From Class: ClassName=Main Member=SW4
+Change Component Footprint: Designator=U5 Old Footprint=W16-H2_N New Footprint=SOIC-SN8_M
+Change Component Comment : Designator=C6 Old Comment=1uF New Comment=12pF
+Change Component Comment : Designator=R10 Old Comment=10k New Comment=10kO
+Change Component Comment : Designator=U5 Old Comment=DS3231SN/T&R New Comment=MCP7940N-I/SN
+Change Component Designator: OldDesignator=C7 NewDesignator=C10
+Change Component Designator: OldDesignator=C8 NewDesignator=C11
+Change Component Designator: OldDesignator=C9 NewDesignator=C12
+Change Component Designator: OldDesignator=C10 NewDesignator=C13
+Change Component Designator: OldDesignator=C11 NewDesignator=C14
+Change Component Designator: OldDesignator=C12 NewDesignator=C15
+Change Component Designator: OldDesignator=D4 NewDesignator=D5
+Change Component Designator: OldDesignator=D5 NewDesignator=D6
+Change Component Designator: OldDesignator=R12 NewDesignator=R11
+Change Component Designator: OldDesignator=SW4 NewDesignator=SW3
+Change Managed Component Library Link : Designator=U5 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=F02E7A0F-5CB2-4DE6-AD20-4CE59FE27E41 New ItemGUID=72DA3E13-7003-4D03-93F4-3365E0D00628 Old RevisionGUID=3E080B23-818F-4350-B3CC-DBC8D8EB7F27 New RevisionGUID=DB0334E9-18E0-4E01-B6E9-675B36857D48
+Change component parameters: Designator = "U5" ("U5"); Footprint = "W16-H2_N"; UniqueID = "\GPKMJYVC" ("\GPKMJYVC")
+Change component parameters (AddParameter): Name = "Code_IPC"; Value = "SOIC127P600-8"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Code_JEDEC"; Value = "MS-012"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer URL"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.microchip.com/"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink2URL"; Value = "http://ww1.microchip.com/downloads/en/DeviceDoc/25010C.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink3Description"; Value = "Package Specification"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink3URL"; Value = "http://www.microchip.com/stellent/groups/techpub_sg/documents/packagingspec/en012702.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "DatasheetVersion"; Value = "revC, Dec-2011"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "PackageDescription"; Value = "8-Lead Plastic Small Outline (SN) - Narrow, 3.90mm Body [SOIC]"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "PackageReference"; Value = "SOIC-SN8"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "PackageVersion"; Value = "revBB, Aug-2009"; VariantName = "[No Variations]"
+Added Component: Designator=C7(WCAP-CSGP_0603_L1.6W0.8H0.8_Reflow)
+Added Component: Designator=C8(WCAP-CSGP_0603_L1.6W0.8H0.8_Reflow)
+Added Component: Designator=C9(WCAP-CSGP_0603_L1.6W0.8H0.8_Reflow)
+Added Component: Designator=D4(FP-477AD-MFG)
+Add component (AddParameter): Name = "Capacitance"; Value = "55pF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Forward Current"; Value = "1A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "750µm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lifecycle Status"; Value = "Production"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Lifecycle Status"; Value = "ACTIVE"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Forward Surge Current (Ifsm)"; Value = "25A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Junction Temperature (Tj)"; Value = "150°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = "150°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Repetitive Reverse Voltage (Vrrm)"; Value = "40V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = "-55°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "NexarPartId"; Value = "93203856"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Peak Reverse Current"; Value = "5µA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Reverse Voltage"; Value = "40V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "Compliant"; VariantName = "[No Variations]"
+Added Component: Designator=R12(RESC1608X55X25NL10T15)
+Added Component: Designator=Y1(XTAL_CM7V-T1A-32.768KHZ-7PF-20PPM-TA-QC)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/CM7V-T1A-32.768KHZ-7PF-20PPM-TA-QC/Micro+Crystal/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Micro Crystal"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "CM7V-T1A-32.768KHZ-7PF-20PPM-TA-QC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SMD-2 Micro Crystal"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/CM7V-T1A-32.768KHZ-7PF-20PPM-TA-QC/Micro+Crystal/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Added Pin To Net: NetName=GND Pin=C7-1
+Added Pin To Net: NetName=GND Pin=C8-1
+Added Pin To Net: NetName=3V3 Pin=C8-2
+Added Pin To Net: NetName=GND Pin=C9-1
+Added Pin To Net: NetName=3V3 Pin=C9-2
+Added Pin To Net: NetName=VBAT Pin=D4-2
+Added Pin To Net: NetName=3V3 Pin=R12-1
+Added Pin To Net: NetName=3V3 Pin=U5-3
+Added Pin To Net: NetName=GND Pin=U5-4
+Added Pin To Net: NetName=SDA Pin=U5-5
+Added Pin To Net: NetName=SCL Pin=U5-6
+Added Pin To Net: NetName=NetR10_2 Pin=U5-7
+Added Pin To Net: NetName=3V3 Pin=U5-8
+Change Net Name : Old Net Name=NetC7_2 New Net Name=NetC10_2
+Change Net Name : Old Net Name=NetD4_A New Net Name=NetD5_A
+Change Net Name : Old Net Name=NetD4_C New Net Name=NetD5_C
+Change Net Name : Old Net Name=NetD5_2 New Net Name=NetD6_2
+Change Net Name : Old Net Name=NetR12_2 New Net Name=NetR11_2
+Added Pin To Net: NetName=NetC6_2 Pin=C6-2
+Added Pin To Net: NetName=NetC6_2 Pin=U5-2
+Added Pin To Net: NetName=NetC6_2 Pin=Y1-2
+Added Net: Name=NetC6_2
+Added Pin To Net: NetName=NetC7_2 Pin=C7-2
+Added Pin To Net: NetName=NetC7_2 Pin=U5-1
+Added Pin To Net: NetName=NetC7_2 Pin=Y1-1
+Added Net: Name=NetC7_2
+Added Pin To Net: NetName=NetD4_1 Pin=D4-1
+Added Pin To Net: NetName=NetD4_1 Pin=R12-2
+Added Net: Name=NetD4_1
+Add Class Member: Failed to add class member : Component B1 LiPo
+Added Member To Class: ClassName=Main Member=Component C13 1000uF
+Added Member To Class: ClassName=Main Member=Component C14 1000uF
+Added Member To Class: ClassName=Main Member=Component C15 0.1uF
+Added Member To Class: ClassName=Main Member=Component D6 NRVBSS14HE
+Added Member To Class: ClassName=Main Member=Component Y1 CM7V-T1A-32.768KHZ-7PF-20PPM-TA-QC
