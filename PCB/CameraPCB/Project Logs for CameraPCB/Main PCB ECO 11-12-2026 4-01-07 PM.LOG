@@ -1,0 +1,13 @@
+Change Component Designator: OldDesignator=C? NewDesignator=C10
+Change Component Designator: OldDesignator=D? NewDesignator=D5
+Change Component Designator: OldDesignator=Q4 NewDesignator=Q3
+Change Component Designator: OldDesignator=R16 NewDesignator=R14
+Change Component Designator: OldDesignator=R? NewDesignator=R13
+Change Component Designator: OldDesignator=SW3 NewDesignator=SW2
+Change Component Designator: OldDesignator=SW? NewDesignator=SW3
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Change Net Name : Old Net Name=NetC?_2 New Net Name=NetC10_2
+Change Net Name : Old Net Name=NetD?_C New Net Name=NetD5_C
+Change Net Name : Old Net Name=NetQ4_3 New Net Name=NetQ3_3
+Add Class Member: Failed to add class member : Component B1 LiPo

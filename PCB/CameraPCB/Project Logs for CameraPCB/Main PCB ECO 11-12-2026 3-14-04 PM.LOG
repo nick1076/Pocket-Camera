@@ -1,0 +1,11 @@
+Added Component: Designator=D?(LED_XPGDWT-B1-0000-00LE1)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/XPGDWT-B1-0000-00LE1/Cree/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Cree"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "XPGDWT-B1-0000-00LE1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "1414 Cree"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/XPGDWT-B1-0000-00LE1/Cree/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin B1-0
+Add Pin To Net: Unknown Pin: Pin B1-1
+Add Class Member: Failed to add class member : Component B1 LiPo
+Added Member To Class: ClassName=Main Member=Component D? XPGDWT-B1-0000-00LE1

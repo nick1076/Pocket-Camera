@@ -50,6 +50,40 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
+DocumentPath=LED_XPGDWT-B1-0000-00LE1.PcbLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=IOFYTHGM
+
+[Document2]
+DocumentPath=CL32A476KOJNNNE.SchLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=ZSGKKVBI
+
+[Document3]
 DocumentPath=XTAL_CM7V-T1A-32.768KHZ-7PF-20PPM-TA-QC.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -66,7 +100,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=LFMFVCRX
 
-[Document2]
+[Document4]
 DocumentPath=CM7V-T1A-32.768KHZ-7PF-20PPM-TA-QC.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -83,7 +117,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=PBOKGLEO
 
-[Document3]
+[Document5]
 DocumentPath=NC7SZ05P5X.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -100,7 +134,24 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=XHTRSHJM
 
-[Document4]
+[Document6]
+DocumentPath=CAPC3225X270N.PcbLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=MGJHNNNC
+
+[Document7]
 DocumentPath=NC7SZ05P5X.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -117,7 +168,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=TORUJHAE
 
-[Document5]
+[Document8]
 DocumentPath=MP-2016-1100-50-70.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -134,7 +185,24 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=GPOJCTDD
 
-[Document6]
+[Document9]
+DocumentPath=XPGDWT-B1-0000-00LE1.SchLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=VWKLYMFX
+
+[Document10]
 DocumentPath=LED_MP-2016-1100-50-70.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -151,7 +219,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=GBTQVPRD
 
-[Document7]
+[Document11]
 DocumentPath=Main.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -168,7 +236,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=VLTCIOQQ
 
-[Document8]
+[Document12]
 DocumentPath=Main.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
